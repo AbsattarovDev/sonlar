@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 500px;
+  height: 400px;
+  border: 1px solid magenta;
+  border-radius: 20px;
+}
+
+#feedback {
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.expression {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#question {
+  font-size: 45px;
+}
+
+#input {
+  width: 45px;
+  height: 40px;
+  font-size: x-large;
+  border-radius: 10px;
+  border: 1px solid gray;
+  text-align: center;
+}
+
+#input:focus {
+  outline-color: magenta;
+}
+
+#checkBtn {
+  font-size: large;
+  padding: 7px 40px;
+  border: 1px solid magenta;
+  background-color: lightgray;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.keyboard {
+  display: flex;
+  gap: 5px;
+  margin-top: 30px;
+}
+
+.keyboard button {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.keys {
+  background-color: pink;
+}
+
+#all {
+  background-color: magenta;
+}
+
+.active {
+  background-color: magenta;
+}
