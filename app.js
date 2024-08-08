@@ -13,7 +13,7 @@ let createMultiplication = () => {
   };
 
   let randY = () => {
-    return Math.floor(Math.random() * 10) + 1;
+    return Math.floor(Math.random() * 8) + 2;
   };
 
   x = randX();
@@ -85,3 +85,39 @@ function takeActive() {
   return randomButton;
 }
 takeActive();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const table = document.getElementById("table");
+  const rows = table.rows;
+
+  for (let i = 1; i < rows.length; i++) {
+    for (let j = 1; j < rows[i].cells.length; j++) {
+      rows[i].cells[j].addEventListener("mouseover", (event) => {
+        highlightCells(rows, i, j);
+        event.target.classList.add("hovered"); // Add the hovered class to the specific cell
+      });
+      rows[i].cells[j].addEventListener("mouseout", (event) => {
+        removeHighlight(rows);
+        event.target.classList.remove("hovered"); // Remove the hovered class from the specific cell
+      });
+    }
+  }
+
+  function highlightCells(rows, rowIndex, colIndex) {
+    for (let i = 0; i < rows.length; i++) {
+      rows[i].cells[colIndex].classList.add("highlight");
+    }
+    for (let j = 0; j < rows[rowIndex].cells.length; j++) {
+      rows[rowIndex].cells[j].classList.add("highlight");
+    }
+  }
+
+  function removeHighlight(rows) {
+    for (let i = 0; i < rows.length; i++) {
+      for (let j = 0; j < rows[i].cells.length; j++) {
+        rows[i].cells[j].classList.remove("highlight");
+        rows[i].cells[j].classList.remove("hovered"); // Ensure hovered class is removed
+      }
+    }
+  }
+});
