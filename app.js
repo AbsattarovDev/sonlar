@@ -121,3 +121,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
+// Make hidden or visible
+
+document.getElementById("check").addEventListener("change", function () {
+  var element = document.querySelector("table");
+
+  if (this.checked) {
+    element.style.display = "none"; // Hide the element when switch is checked
+  } else {
+    element.style.display = "block"; // Show the element when switch is unchecked
+  }
+});
