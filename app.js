@@ -94,11 +94,11 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let j = 1; j < rows[i].cells.length; j++) {
       rows[i].cells[j].addEventListener("mouseover", (event) => {
         highlightCells(rows, i, j);
-        event.target.classList.add("hovered"); // Add the hovered class to the specific cell
+        event.target.classList.add("hovered");
       });
       rows[i].cells[j].addEventListener("mouseout", (event) => {
         removeHighlight(rows);
-        event.target.classList.remove("hovered"); // Remove the hovered class from the specific cell
+        event.target.classList.remove("hovered");
       });
     }
   }
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let i = 0; i < rows.length; i++) {
       for (let j = 0; j < rows[i].cells.length; j++) {
         rows[i].cells[j].classList.remove("highlight");
-        rows[i].cells[j].classList.remove("hovered"); // Ensure hovered class is removed
+        rows[i].cells[j].classList.remove("hovered");
       }
     }
   }
@@ -125,11 +125,14 @@ document.addEventListener("DOMContentLoaded", () => {
 // Make hidden or visible
 
 document.getElementById("check").addEventListener("change", function () {
-  var element = document.querySelector("table");
+  const element = document.querySelector("table");
+  const centering = document.querySelector("main");
 
   if (this.checked) {
-    element.style.display = "none"; // Hide the element when switch is checked
+    element.style.display = "none";
+    centering.style.justifyContent = "center";
   } else {
-    element.style.display = "block"; // Show the element when switch is unchecked
+    element.style.display = "";
+    centering.style.justifyContent = "space-evenly";
   }
 });
