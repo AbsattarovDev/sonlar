@@ -1,2 +1,4 @@
 # Multiplication asker project
- soon...
+
+`Easy to learn`
+`Good to revise`
