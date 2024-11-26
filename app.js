@@ -1,7 +1,6 @@
 const question = document.getElementById("question");
 const input = document.getElementById("input");
 const checkBtn = document.getElementById("checkBtn");
-const feedback = document.getElementById("feedback");
 const keys = document.querySelectorAll(".keys");
 
 let x, y;
@@ -19,12 +18,25 @@ let createMultiplication = () => {
   x = randX();
   y = randY();
 
-  question.textContent = `${x} * ${y} =`;
-
   let expression = `${x} * ${y} =`;
+  question.textContent = expression;
   return expression;
 };
 createMultiplication();
+
+function showBoolean(trueFalse, borderColor, color) {
+  const feedback = document.getElementById("feedback");
+  feedback.textContent = trueFalse;
+  feedback.style.borderColor = borderColor;
+  feedback.style.color = color;
+
+  setTimeout(() => {
+    feedback.textContent = "";
+    feedback.style.borderColor = "transparent";
+  }, 1000);
+
+  return feedback;
+}
 
 // Answer checking
 const checkAnswer = () => {
@@ -38,17 +50,11 @@ const checkAnswer = () => {
   if (input.value == result) {
     let newExpression = createMultiplication();
     question.textContent = newExpression;
-    feedback.textContent = "To'g'ri!";
-    feedback.style.borderColor = "lightgreen";
-    feedback.style.color = "green";
+    showBoolean("To'g'ri!", "lightgreen", "green");
   } else if (input.value == "") {
-    feedback.textContent = "Yozing!";
-    feedback.style.borderColor = "darkgray";
-    feedback.style.color = "black";
+    showBoolean("Yozing!", "darkgray", "black");
   } else {
-    feedback.textContent = "Noto'g'ri!";
-    feedback.style.borderColor = "lightcoral";
-    feedback.style.color = "red";
+    showBoolean("Noto'g'ri!", "lightcoral", "red");
   }
 
   input.value = "";
