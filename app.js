@@ -60,6 +60,10 @@ const checkAnswer = () => {
   input.value = "";
 };
 
+window.onload = function() {
+  document.getElementById('input').focus();
+}
+
 checkBtn.addEventListener("click", checkAnswer);
 
 // "Enter" key handle
