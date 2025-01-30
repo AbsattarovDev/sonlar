@@ -2,6 +2,8 @@ const question = document.getElementById("question");
 const input = document.getElementById("input");
 const checkBtn = document.getElementById("checkBtn");
 const keys = document.querySelectorAll(".keys");
+const trueAnswer = document.querySelector(".true");
+const falseAnswer = document.querySelector(".false");
 
 let x, y;
 
@@ -51,10 +53,12 @@ const checkAnswer = () => {
     let newExpression = createMultiplication();
     question.textContent = newExpression;
     showBoolean("To'g'ri!", "lightgreen", "green");
+    trueAnswer.textContent++;
   } else if (input.value == "") {
     showBoolean("Yozing!", "darkgray", "black");
   } else {
     showBoolean("Noto'g'ri!", "lightcoral", "red");
+    falseAnswer.textContent++;
   }
 
   input.value = "";
@@ -94,55 +98,5 @@ function takeActive() {
     activeButtons[Math.floor(Math.random() * activeButtons.length)];
   return randomButton;
 }
+
 takeActive();
-
-document.addEventListener("DOMContentLoaded", () => {
-  const table = document.getElementById("table");
-  const rows = table.rows;
-
-  for (let i = 1; i < rows.length; i++) {
-    for (let j = 1; j < rows[i].cells.length; j++) {
-      rows[i].cells[j].addEventListener("mouseover", (event) => {
-        highlightCells(rows, i, j);
-        event.target.classList.add("hovered");
-      });
-      rows[i].cells[j].addEventListener("mouseout", (event) => {
-        removeHighlight(rows);
-        event.target.classList.remove("hovered");
-      });
-    }
-  }
-
-  function highlightCells(rows, rowIndex, colIndex) {
-    for (let i = 0; i < rows.length; i++) {
-      rows[i].cells[colIndex].classList.add("highlight");
-    }
-    for (let j = 0; j < rows[rowIndex].cells.length; j++) {
-      rows[rowIndex].cells[j].classList.add("highlight");
-    }
-  }
-
-  function removeHighlight(rows) {
-    for (let i = 0; i < rows.length; i++) {
-      for (let j = 0; j < rows[i].cells.length; j++) {
-        rows[i].cells[j].classList.remove("highlight");
-        rows[i].cells[j].classList.remove("hovered");
-      }
-    }
-  }
-});
-
-// Make hidden or visible
-
-document.getElementById("check").addEventListener("change", function () {
-  const element = document.querySelector("table");
-  const centering = document.querySelector("main");
-
-  if (this.checked) {
-    element.style.display = "none";
-    centering.style.justifyContent = "center";
-  } else {
-    element.style.display = "";
-    centering.style.justifyContent = "space-evenly";
-  }
-});
