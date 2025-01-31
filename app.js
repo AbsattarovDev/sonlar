@@ -65,10 +65,14 @@ const checkAnswer = () => {
 };
 
 window.onload = function() {
-  document.getElementById('input').focus();
+  input.focus();
 }
 
-checkBtn.addEventListener("click", checkAnswer);
+checkBtn.addEventListener("click", function() {
+  checkAnswer();
+
+  input.focus();
+});
 
 // "Enter" key handle
 const enterKeydown = (event) => {
