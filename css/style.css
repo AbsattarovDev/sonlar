@@ -7,7 +7,37 @@
   user-select: none;
 }
 
-.main {
+a {
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: interMedium;
+  src: url(../fonts/interMedium.ttf);
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  background-color: lightgray;
+}
+
+nav {
+  width: 500px;
+  height: 50px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid red;
+}
+
+.logo {
+  font-size: 28px;
+  font-family: interMedium;
+}
+
+main {
   height: 90dvh;
   display: flex;
   align-items: center;
@@ -31,6 +61,28 @@
   gap: 20px;
   margin-top: -50px;
   padding-bottom: 20px;
+}
+
+.counter div {
+  display: flex;
+  align-items: center;
+}
+
+#right,
+#wrong {
+  padding: 2px 8px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#right {
+  background-color: lightgreen;
+  gap: 5px;
+}
+
+#wrong {
+  background-color: rgba(255, 0, 0, 0.2);
+  gap: 4px;
 }
 
 .true {
@@ -88,6 +140,7 @@ input[type="number"] {
 }
 
 #checkBtn {
+  font-weight: 600;
   font-size: large;
   padding: 7px 40px;
   border: 1px solid magenta;
@@ -117,6 +170,9 @@ button:hover {
 .keys,
 .key {
   background-color: pink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .active {

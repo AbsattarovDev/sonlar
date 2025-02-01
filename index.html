@@ -17,34 +17,46 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
+    <header>
+      <nav>
+        <h3 class="logo">Sonlar</h3>
+        <a id="help" href="#"
+          ><img src="./img/icons/help.png" alt="help" width="30px"
+        /></a>
+      </nav>
+    </header>
     <main>
-      <div class="main">
-        <div class="wrapper">
-          <div class="counter">
+      <div class="wrapper">
+        <div class="counter">
+          <div id="right">
+            <img style="margin-top: 2px;" src="./img/icons/true.png" alt="true answer" width="15px" />
             <span class="true">0</span>
+          </div>
+          <div id="wrong">
+            <img style="margin-top: 2px;" src="./img/icons/false.png" alt="false answer" width="20px" />
             <span class="false">0</span>
           </div>
-          <div class="screen">
-            <h2 id="feedback"></h2>
-            <div class="expression">
-              <h1 id="question"></h1>
-              <input type="number" id="input" />
-            </div>
+        </div>
+        <div class="screen">
+          <h2 id="feedback"></h2>
+          <div class="expression">
+            <h1 id="question"></h1>
+            <input type="number" id="input" />
           </div>
-          <div>
-            <button id="checkBtn" type="button">Tekshirish</button>
-          </div>
-          <div class="keyboard">
-            <button class="key" id="all">2-9</button>
-            <button class="keys" id="two">2</button>
-            <button class="keys" id="three">3</button>
-            <button class="keys" id="four">4</button>
-            <button class="keys" id="five">5</button>
-            <button class="keys" id="six">6</button>
-            <button class="keys" id="seven">7</button>
-            <button class="keys" id="eight">8</button>
-            <button class="keys" id="nine">9</button>
-          </div>
+        </div>
+        <div>
+          <button id="checkBtn" type="button">Tekshirish</button>
+        </div>
+        <div class="keyboard">
+          <button class="key" id="all"><img src="./img/icons/shuffle.png" alt="shuffle" width="15px"></button>
+          <button class="keys" id="two">2</button>
+          <button class="keys" id="three">3</button>
+          <button class="keys" id="four">4</button>
+          <button class="keys" id="five">5</button>
+          <button class="keys" id="six">6</button>
+          <button class="keys" id="seven">7</button>
+          <button class="keys" id="eight">8</button>
+          <button class="keys" id="nine">9</button>
         </div>
       </div>
     </main>
