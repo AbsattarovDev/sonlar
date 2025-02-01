@@ -4,26 +4,31 @@ const checkBtn = document.getElementById("checkBtn");
 const keys = document.querySelectorAll(".keys");
 const trueAnswer = document.querySelector(".true");
 const falseAnswer = document.querySelector(".false");
-
-let x, y;
+const all = document.getElementById("all");
 
 // Creating multiplication
 let createMultiplication = () => {
-  let randX = () => {
-    return Math.floor(Math.random() * 8) + 2;
-  };
+  const activeButtons = document.querySelectorAll(".keys.active");
 
-  let randY = () => {
-    return Math.floor(Math.random() * 8) + 2;
-  };
+  let x, y;
 
-  x = randX();
-  y = randY();
+  if (activeButtons.length === 0) {
+    x = Math.floor(Math.random() * 8) + 2;
+    all.classList.add("active");
+  } else {
+    const randomButton =
+      activeButtons[Math.floor(Math.random() * activeButtons.length)];
+    x = parseInt(randomButton.innerText);
+    all.classList.remove("active");
+  }
+
+  y = Math.floor(Math.random() * 8) + 2;
 
   let expression = `${x} * ${y} =`;
   question.textContent = expression;
   return expression;
 };
+
 createMultiplication();
 
 function showBoolean(trueFalse, borderColor, color) {
@@ -64,11 +69,11 @@ const checkAnswer = () => {
   input.value = "";
 };
 
-window.onload = function() {
+window.onload = function () {
   input.focus();
-}
+};
 
-checkBtn.addEventListener("click", function() {
+checkBtn.addEventListener("click", function () {
   checkAnswer();
 
   input.focus();
@@ -84,23 +89,20 @@ const enterKeydown = (event) => {
 
 input.addEventListener("keydown", enterKeydown);
 
+// Active toggle
 keys.forEach((key) => {
   key.addEventListener("click", (event) => {
     event.target.classList.toggle("active");
-    takeActive();
+    all.classList.remove("active");
+
+    input.focus();
   });
 });
 
-function takeActive() {
-  const activeButtons = document.querySelectorAll(".active");
+all.addEventListener("click", function () {
+  keys.forEach((key) => key.classList.remove("active"));
 
-  if (activeButtons.length === 0) {
-    return null;
-  }
+  all.classList.add("active");
 
-  let randomButton =
-    activeButtons[Math.floor(Math.random() * activeButtons.length)];
-  return randomButton;
-}
-
-takeActive();
+  input.focus();
+});
