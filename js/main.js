@@ -1,3 +1,5 @@
+import { translations } from "./translations.js";
+
 const question = document.getElementById("question");
 const input = document.getElementById("input");
 const checkBtn = document.getElementById("checkBtn");
@@ -45,7 +47,7 @@ function showBoolean(trueFalse, borderColor, color) {
   return feedback;
 }
 
-// Answer checking
+// Answer check
 const checkAnswer = () => {
   let expression = question.textContent;
   const result = expression
@@ -105,4 +107,86 @@ all.addEventListener("click", function () {
   all.classList.add("active");
 
   input.focus();
+});
+
+// Toggle menu
+function toggleMenu() {
+  const menu = document.querySelector(".menu");
+  const button = document.querySelector(".menuBtn");
+  const rect = button.getBoundingClientRect();
+
+  if (menu.classList.contains("show")) {
+    menu.style.opacity = "0";
+    menu.style.transform = "translateY(-10px)";
+    setTimeout(() => {
+      menu.style.display = "none";
+      menu.classList.remove("show");
+    }, 200);
+    return;
+  }
+
+  menu.style.display = "block";
+  menu.style.opacity = "0";
+  menu.style.transform = "translateY(-10px)";
+
+  requestAnimationFrame(() => {
+    const menuWidth = menu.offsetWidth;
+
+    menu.style.top = `${rect.bottom + window.scrollY}px`;
+    menu.style.left = `${rect.left + window.scrollX - menuWidth}px`;
+
+    menu.style.opacity = "1";
+    menu.style.transform = "translateY(0)";
+    menu.classList.add("show");
+  });
+}
+
+document.addEventListener("click", (e) => {
+  const menu = document.querySelector(".menu");
+  const button = document.querySelector(".menuBtn");
+
+  if (!menu.contains(e.target) && !button.contains(e.target)) {
+    menu.style.opacity = "0";
+    menu.style.transform = "translateY(-10px)";
+    setTimeout(() => {
+      menu.style.display = "none";
+      menu.classList.remove("show");
+    }, 200);
+  }
+});
+
+// Button event listener
+document.querySelector(".menuBtn").addEventListener("click", (e) => {
+  e.stopPropagation();
+  toggleMenu();
+});
+
+// Language switch
+const enBtn = document.getElementById("enBtn");
+const uzBtn = document.getElementById("uzBtn");
+const ruBtn = document.getElementById("ruBtn");
+const buttons = [enBtn, uzBtn, ruBtn];
+
+function changeLanguage(lang) {
+  document.getElementById("checkBtn").textContent =
+    translations[lang].checkButton;
+  // document.getElementById("helpText").textContent =
+  //   translations[lang].helpButton;
+
+  localStorage.setItem("selectedLanguage", lang);
+
+  buttons.forEach((btn) => (btn.style.background = "transparent"));
+
+  document.getElementById(`${lang}Btn`).style.background = "#d4d4d4";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const savedLang = localStorage.getItem("selectedLanguage") || "uz";
+  changeLanguage(savedLang);
+});
+
+buttons.forEach((btn) => {
+  btn.addEventListener("click", () =>
+    changeLanguage(btn.id.replace("Btn", ""))
+  );
 });

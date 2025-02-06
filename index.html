@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sonlar.uz</title>
     <meta
       name="description"
       content="Sonlar.uz - Hisoblash tezligingizni oshiring!"
@@ -15,25 +14,48 @@
     <meta name="robots" content="index, follow" />
     <meta name="author" content="AbsattarovDev" />
     <link rel="stylesheet" href="./css/style.css" />
+    <title>Sonlar.uz</title>
   </head>
   <body>
     <header>
       <nav>
         <h3 class="logo">Sonlar</h3>
-        <a id="help" href="#"
-          ><img src="./img/icons/help.png" alt="help" width="30px"
-        /></a>
+        <button class="menuBtn">
+          <img src="./icons/menu.png" alt="help" width="22px" />
+        </button>
       </nav>
+      <div class="menu">
+        <div class="outline">
+          <button id="enBtn">EN</button>
+          <button id="uzBtn">UZ</button>
+          <button id="ruBtn">RU</button>
+        </div>
+        <!-- Guide button -->
+        <!-- <button id="helpBtn">
+          <img src="./icons/help.png" alt="help" width="20px" />
+          <p id="helpText"></p>
+        </button> -->
+      </div>
     </header>
     <main>
       <div class="wrapper">
         <div class="counter">
           <div id="right">
-            <img style="margin-top: 2px;" src="./img/icons/true.png" alt="true answer" width="15px" />
+            <img
+              style="margin-top: 2px"
+              src="./icons/true.png"
+              alt="true answer"
+              width="15px"
+            />
             <span class="true">0</span>
           </div>
           <div id="wrong">
-            <img style="margin-top: 2px;" src="./img/icons/false.png" alt="false answer" width="20px" />
+            <img
+              style="margin-top: 2px"
+              src="./icons/false.png"
+              alt="false answer"
+              width="20px"
+            />
             <span class="false">0</span>
           </div>
         </div>
@@ -45,10 +67,13 @@
           </div>
         </div>
         <div>
-          <button id="checkBtn" type="button">Tekshirish</button>
+          <button id="checkBtn" type="button"></button>
         </div>
+        <!-- Keyboard (number selection)-->
         <div class="keyboard">
-          <button class="key" id="all"><img src="./img/icons/shuffle.png" alt="shuffle" width="15px"></button>
+          <button class="key" id="all">
+            <img src="./icons/shuffle.png" alt="shuffle" width="15px" />
+          </button>
           <button class="keys" id="two">2</button>
           <button class="keys" id="three">3</button>
           <button class="keys" id="four">4</button>
@@ -76,6 +101,6 @@
       gtag("config", "G-LWVL5SYGLD");
     </script>
 
-    <script src="app.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>

@@ -2,8 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: interMedium;
   user-select: none;
 }
 
@@ -17,28 +16,92 @@ a {
 }
 
 header {
+  height: 10vh;
   display: flex;
   justify-content: center;
-  background-color: lightgray;
+  background: #d4d4d4;
+  backdrop-filter: blur(9.5px);
+  -webkit-backdrop-filter: blur(9.5px);
+  border: 1px solid rgba(211, 211, 211, 1);
 }
 
 nav {
   width: 500px;
-  height: 50px;
-  padding: 20px;
+  height: 100%;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid red;
 }
 
 .logo {
   font-size: 28px;
-  font-family: interMedium;
 }
 
+.menuBtn {
+  border: none;
+  background-color: transparent;
+}
+
+.menuBtn:hover {
+  cursor: pointer;
+}
+
+.menu {
+  z-index: 1;
+  position: absolute;
+  width: 200px;
+  height: 60px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 12px;
+  border: 1px solid magenta;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  visibility: hidden;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2), 0px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.outline {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid magenta;
+  border-radius: 8px;
+}
+
+#enBtn,
+#uzBtn,
+#ruBtn {
+  border: 1px solid magenta;
+  width: 40px;
+  height: 25px;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+/* #helpBtn {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid magenta;
+  border-radius: 8px;
+  background-color: #d4d4d4;
+} */
+
 main {
-  height: 90dvh;
+  height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,6 +175,7 @@ main {
 }
 
 #question {
+  font-family: interMedium;
   font-size: 45px;
 }
 
@@ -140,11 +204,12 @@ input[type="number"] {
 }
 
 #checkBtn {
-  font-weight: 600;
+  color: black;
+  font-weight: 500;
   font-size: large;
   padding: 7px 40px;
   border: 1px solid magenta;
-  background-color: lightgray;
+  background-color: #d4d4d4;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -169,6 +234,7 @@ button:hover {
 
 .keys,
 .key {
+  font-family: interMedium;
   background-color: pink;
   display: flex;
   align-items: center;
