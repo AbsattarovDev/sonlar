@@ -1,5 +1,14 @@
 import { translations } from "./translations.js";
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/sw.js")
+    .then(() => console.log("Service Worker Registered"))
+    .catch((error) =>
+      console.log("Service Worker Registration Failed:", error)
+    );
+}
+
 const question = document.getElementById("question");
 const input = document.getElementById("input");
 const checkBtn = document.getElementById("checkBtn");
