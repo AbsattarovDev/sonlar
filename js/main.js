@@ -2,7 +2,7 @@ import { translations } from "./translations.js";
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register("/sw.js")
+    .register("./sw.js")
     .then(() => console.log("Service Worker Registered"))
     .catch((error) =>
       console.log("Service Worker Registration Failed:", error)
@@ -17,19 +17,19 @@ const trueAnswer = document.querySelector(".true");
 const falseAnswer = document.querySelector(".false");
 const all = document.getElementById("all");
 
-// Creating multiplication
-let createMultiplication = () => {
-  const activeButtons = document.querySelectorAll(".keys.active");
+let selectedNumbers = [];
 
+// Creating multiplication
+let createMultiplication = (specificNumber = null) => {
   let x, y;
 
-  if (activeButtons.length === 0) {
+  if (selectedNumbers.length === 0) {
     x = Math.floor(Math.random() * 8) + 2;
     all.classList.add("active");
   } else {
-    const randomButton =
-      activeButtons[Math.floor(Math.random() * activeButtons.length)];
-    x = parseInt(randomButton.innerText);
+    x =
+      specificNumber ||
+      selectedNumbers[Math.floor(Math.random() * selectedNumbers.length)];
     all.classList.remove("active");
   }
 
@@ -103,17 +103,35 @@ input.addEventListener("keydown", enterKeydown);
 // Active toggle
 keys.forEach((key) => {
   key.addEventListener("click", (event) => {
-    event.target.classList.toggle("active");
+    const number = parseInt(event.target.innerText);
+
+    if (selectedNumbers.includes(number)) {
+      selectedNumbers = selectedNumbers.filter((n) => n !== number);
+      event.target.classList.remove("active");
+    } else {
+      selectedNumbers.push(number);
+      event.target.classList.add("active");
+    }
+
     all.classList.remove("active");
+
+    if (selectedNumbers.length > 0) {
+      createMultiplication(selectedNumbers[selectedNumbers.length - 1]);
+    } else {
+      createMultiplication();
+    }
 
     input.focus();
   });
 });
 
+// Shuffle button (asks (2-9))
 all.addEventListener("click", function () {
+  selectedNumbers = [];
   keys.forEach((key) => key.classList.remove("active"));
-
   all.classList.add("active");
+
+  createMultiplication();
 
   input.focus();
 });

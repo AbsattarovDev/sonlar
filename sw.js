@@ -43,7 +43,7 @@ self.addEventListener("fetch", (event) => {
       return (
         response ||
         fetch(event.request).catch(() => {
-          return caches.match("/offline.html"); // Show offline page
+          return caches.match("./offline.html"); // Show offline page
         })
       );
     })
