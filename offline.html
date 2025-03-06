@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./icons/s-favicon.png"
+      type="image/x-icon"
+    />
+    <title>Offline!</title>
+    <style>
+      body {
+        background-color: #181818;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .icon {
+        width: 120px;
+        height: 120px;
+        border-radius: 24px;
+      }
+      .text {
+        margin-top: 20px;
+        font-size: 24px;
+      }
+      @media (max-width: 600px) {
+        .icon {
+          width: 96px;
+          height: 96px;
+        }
+        .text {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <img class="icon" src="./icons/s-favicon.png" alt="App Icon" />
+    <div class="text">You're offline!</div>
+  </body>
+</html>
