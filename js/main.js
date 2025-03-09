@@ -42,20 +42,6 @@ let createMultiplication = (specificNumber = null) => {
 
 createMultiplication();
 
-function showBoolean(trueFalse, borderColor, color) {
-  const feedback = document.getElementById("feedback");
-  feedback.textContent = trueFalse;
-  feedback.style.borderColor = borderColor;
-  feedback.style.color = color;
-
-  setTimeout(() => {
-    feedback.textContent = "";
-    feedback.style.borderColor = "transparent";
-  }, 1000);
-
-  return feedback;
-}
-
 // Answer check
 const checkAnswer = () => {
   let expression = question.textContent;
@@ -65,16 +51,33 @@ const checkAnswer = () => {
     .split("*")
     .reduce((a, b) => a * b);
 
+  const wrongSquare = document.getElementById("wrong");
+  const rightSquare = document.getElementById("right");
+
   if (input.value == result) {
     let newExpression = createMultiplication();
     question.textContent = newExpression;
-    showBoolean("To'g'ri!", "lightgreen", "green");
+
     trueAnswer.textContent++;
+    trueAnswer.classList.add("animated");
+    rightSquare.classList.add("animated");
+    setTimeout(() => {
+      trueAnswer.classList.remove("animated");
+      rightSquare.classList.remove("animated");
+    }, 300);
   } else if (input.value == "") {
-    showBoolean("Yozing!", "darkgray", "black");
+    input.classList.add("shaking");
+    setTimeout(() => {
+      input.classList.remove("shaking");
+    }, 1000);
   } else {
-    showBoolean("Noto'g'ri!", "lightcoral", "red");
     falseAnswer.textContent++;
+    falseAnswer.classList.add("animated");
+    wrongSquare.classList.add("animated");
+    setTimeout(() => {
+      falseAnswer.classList.remove("animated");
+      wrongSquare.classList.remove("animated");
+    }, 300);
   }
 
   input.value = "";
