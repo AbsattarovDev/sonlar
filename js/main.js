@@ -220,3 +220,31 @@ buttons.forEach((btn) => {
     changeLanguage(btn.id.replace("Btn", ""))
   );
 });
+
+// Service worker logic
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js").then((registration) => {
+    console.log("Service Worker registered.");
+
+    registration.onupdatefound = () => {
+      const newWorker = registration.installing;
+      newWorker.onstatechange = () => {
+        if (
+          newWorker.state === "installed" &&
+          navigator.serviceWorker.controller
+        ) {
+          console.log("New update available! Reloading...");
+          window.location.reload();
+        }
+      };
+    };
+  });
+
+  // Listen for messages from service worker
+  navigator.serviceWorker.addEventListener("message", (event) => {
+    if (event.data.action === "reloadPage") {
+      console.log("Reloading page due to new service worker.");
+      window.location.reload();
+    }
+  });
+}

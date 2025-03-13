@@ -1,4 +1,4 @@
-const CACHE_NAME = "pwa-cache-v2";
+const CACHE_NAME = "pwa-cache-v3"; // Increment the version on every update
 const urlsToCache = [
   "/",
   "/index.html",
@@ -34,6 +34,7 @@ self.addEventListener("install", (event) => {
       }
     })
   );
+  self.skipWaiting(); // Force new SW activation
 });
 
 // Serve cached content when offline
@@ -42,15 +43,13 @@ self.addEventListener("fetch", (event) => {
     caches.match(event.request).then((response) => {
       return (
         response ||
-        fetch(event.request).catch(() => {
-          return caches.match("./offline.html"); // Show offline page
-        })
+        fetch(event.request).catch(() => caches.match("/offline.html"))
       );
     })
   );
 });
 
-// Remove old caches
+// Remove old caches and notify clients of an update
 self.addEventListener("activate", (event) => {
   console.log("Service Worker activating...");
   event.waitUntil(
@@ -65,4 +64,12 @@ self.addEventListener("activate", (event) => {
       );
     })
   );
+
+  // Notify all clients (open tabs) to reload
+  self.clients.claim();
+  self.clients.matchAll().then((clients) => {
+    clients.forEach((client) =>
+      client.postMessage({ action: "reloadPage" })
+    );
+  });
 });
